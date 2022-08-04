@@ -2,7 +2,7 @@ import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import path from "path";
-import service from "@/service/service";
+import service from "@/services/service";
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -16,6 +16,7 @@ async function createWindow() {
     width: 800,
     height: 600,
     // frame: false,
+    autoHideMenuBar: true,
     webPreferences: {
       // @ts-ignore
       preload: path.resolve(__static, "preload.js"),

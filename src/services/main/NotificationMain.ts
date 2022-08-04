@@ -1,6 +1,6 @@
 import {ipcMain, IpcMainEvent, BrowserWindow, Notification as Toast} from "electron";
 import Notification from "@/models/Notification";
-import NotificationService from "@/service/NotificationService";
+import NotificationService from "@/services/NotificationService";
 
 export default class NotificationMain {
 
