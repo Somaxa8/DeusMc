@@ -28,9 +28,15 @@ export default class App extends Vue {
   padding: 0 0 0 0 !important;
   height: 95vh;
   overflow-y: hidden;
-  margin-top: 32px;
+  /*margin-top: 32px;*/
 }
+
 body::-webkit-scrollbar {
   display: none;
+}
+
+.theme--dark.v-application {
+    background: #313131;
+    color: #FFFFFF;
 }
 </style>
