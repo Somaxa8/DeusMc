@@ -13,7 +13,12 @@
             <v-btn elevation="0" class="mr-2">
                 <v-icon>mdi-account</v-icon>
             </v-btn>
-            <v-btn elevation="0" class="mr-2">Start</v-btn>
+            <v-btn v-if="isInstalled" elevation="0" class="mr-2" @click="start" :disabled="!isChecked" :loading="isLoading">
+                Start
+            </v-btn>
+            <v-btn v-else elevation="0" class="mr-2" @click="install" :disabled="!isChecked" :loading="isLoading">
+                Install
+            </v-btn>
             <v-btn elevation="0" class="mr-2">
                 <v-icon>mdi-cog</v-icon>
             </v-btn>
@@ -23,8 +28,31 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import MinecraftRenderer from "@/services/renderer/MinecraftRenderer";
+import consola from "consola";
+import TimeTool from "@/services/tools/TimeTool";
 
 @Component
 export default class HomeView extends Vue {
+    isInstalled: boolean = true
+    isChecked: boolean = false
+    isLoading: boolean = false
+
+    start() {
+        MinecraftRenderer.launch()
+    }
+
+    async install() {
+        MinecraftRenderer.install()
+        MinecraftRenderer.installProgress()
+        this.isInstalled = MinecraftRenderer.isInstalled()
+    }
+
+    async created() {
+        await TimeTool.timeout(3000)
+        consola.info("check installations")
+        this.isInstalled = MinecraftRenderer.isInstalled()
+        this.isChecked = true
+    }
 }
 </script>

@@ -2,7 +2,8 @@ const { contextBridge, ipcRenderer, clipboard } = require('electron')
 
 const validChannels = [
     "hide-app", "minimize-app", "close-app",
-    "test"
+    "install-minecraft", "install-progress", "launch-minecraft",
+    "is-installed",
 ]
 contextBridge.exposeInMainWorld(
     'ipc', {
